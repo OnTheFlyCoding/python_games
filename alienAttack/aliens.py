@@ -4,12 +4,18 @@
 
 class Player(object):
     ''' A player in a shooter game'''
+    def __init__(self):
+        print('A new Hero has been born!\n')
+    
     def blast(self,enemy):
         print('The player blasts an enemy. \n')
         enemy.die()
     
 class Alien(object):
     ''' An alien in a shooter game'''
+    def __init__(self):
+        print('A new alien has spawned!!\n')
+    
     def blast(self,enemy):
         print('The alien blasts a hero!')
         pass
@@ -23,4 +29,4 @@ hero = Player()
 invader = Alien()
 hero.blast(invader) 
 
-input('\n\n Press any key to quit')
+input('\n\n Press any key to quit:')

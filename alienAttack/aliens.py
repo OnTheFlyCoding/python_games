@@ -4,8 +4,9 @@
 
 class Player(object):
     ''' A player in a shooter game'''
-    def __init__(self):
+    def __init__(self,name):
         print('A new Hero has been born!\n')
+        self.name = name
     
     def blast(self,enemy):
         print('The player blasts an enemy. \n')
@@ -16,8 +17,9 @@ class Player(object):
         
 class Alien(object):
     ''' An alien in a shooter game'''
-    def __init__(self):
+    def __init__(self,name):
         print('A new alien has spawned!!\n')
+        self.name = name
     
     def blast(self,enemy):
         print('The alien blasts a hero!')
@@ -26,12 +28,19 @@ class Alien(object):
     def die(self):
         print('The alien gasps and says\n \'Oh, this is it. This is the big one. \n Yes, its getting dark now. Tell my 1.6 million larvae that I loved them... \n Good bye.. cruel world.\'\n ')
 
-print(' \t\t Death of an Alien \n')
 
-hero = Player()
-invader = Alien()
-hero.blast(invader)
-print('\t\tThe death of a Hero\n')
-invader.blast(hero)
+def main():
+    player_name = input('What would you like to name your Hero??: ')
+    print('\n\n')
+    hero = Player(player_name)
+    alien_name = input('What would you like to name this specimen?: ')
+    print('\n\n')
+    invader = Alien(alien_name)
+    print(' \t\t Death of an Alien \n')
+    hero.blast(invader)
+    print('\t\tThe death of a Hero\n')
+    invader.blast(hero)
+    
 
+main()
 input('\n\n Press any key to quit:')

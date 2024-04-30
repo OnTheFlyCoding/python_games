@@ -45,9 +45,32 @@ def main():
     invader = Alien(alien_name)
     print(f'Starting Health for our hero: {invader.health}\n')
     #print(' \t\t Death of an Alien\n')
-    hero.blast(invader)
+    print('\t\tBegin Your Intergalactic Battle..')
+    choice = None
+    while choice != "0":
+        print('''
+              \tFight your enemy!
+              
+              Controls:
+              0 - Quit
+              1 - Blast enemy
+              ''')
+        choice = input('Choice: ')
+        #print your choice
+        print()
+        
+        #exit
+        if choice == '0':
+            print('Game over!')
+        
+        elif choice == '1':
+            hero.blast(invader)
+        
+        else:
+            print(f'\nSorry but, {choice} wasn\'t a valid choice')
+        
     #print('\t\tThe death of a Hero\n')
-    invader.blast(hero)
+    #invader.blast(hero)
     
 
 main()

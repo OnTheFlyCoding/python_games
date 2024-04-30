@@ -4,9 +4,10 @@
 
 class Player(object):
     ''' A player in a shooter game'''
-    def __init__(self,name):
+    def __init__(self,name,health=100):
         print('A new Hero has been born!\n')
         self.name = name
+        self.health = health
     
     def blast(self,enemy):
         print('The player blasts an enemy. \n')
@@ -17,12 +18,13 @@ class Player(object):
         
 class Alien(object):
     ''' An alien in a shooter game'''
-    def __init__(self,name):
+    def __init__(self,name,health=100):
         print('A new alien has spawned!!\n')
         self.name = name
+        self.health = health
     
     def blast(self,enemy):
-        print('The alien blasts a hero!')
+        print('The alien blasts a hero!\n')
         enemy.die()
     
     def die(self):
@@ -31,11 +33,13 @@ class Alien(object):
 
 def main():
     player_name = input('What would you like to name your Hero??: ')
-    print('\n\n')
+    print('\n')
     hero = Player(player_name)
-    alien_name = input('What would you like to name this specimen?: ')
-    print('\n\n')
+    print(f' Starting Health for our hero: {hero.health}\n')
+    alien_name = input('What would you like to name this Alien?: ')
+    print('\n')
     invader = Alien(alien_name)
+    print(f' Starting Health for our hero: {invader.health}\n')
     print(' \t\t Death of an Alien \n')
     hero.blast(invader)
     print('\t\tThe death of a Hero\n')

@@ -5,8 +5,7 @@
 
 class Card(object):
     ''' A playing card'''
-    RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-             'J', 'K', 'Q']
+    RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'K', 'Q']
     
     SUITS = ['c', 'd', 'h', 's']
     
@@ -31,7 +30,6 @@ class Hand(object):
                 # return the string method associated with the card obj that this hand has.
                 #concatonate by converting them into strings. originally are string objs
                 rep += str(card) + '\t'
-                return rep
         else:
             #if hand instance is empty, empty list:
             rep = '<empty>'
@@ -54,6 +52,7 @@ class Deck(Hand):
     # Bascially acts as the dealer. controlling the distribution of the cards to the players.
     ''' A deck of playing cards'''
     def populate(self):
+        
         # For every possible value in the CONST list of SUITS, 4 iterations
         for suit in Card.SUITS:
             #for every one suit, assosiate it with every rank
@@ -81,3 +80,14 @@ class Deck(Hand):
                     self.give(top_card, hand)
                 else:
                     print('Can\'t continue deal. Out of cards!')
+                    
+# Main
+deck1 = Deck()
+print('Created a new Deck')
+print(f'Deck: {deck1}')
+deck1.populate()
+print('\nPopulated the deck.')
+print(deck1)
+
+
+input('Press any key to exit: ')

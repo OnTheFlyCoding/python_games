@@ -47,4 +47,24 @@ class Hand(object):
         self.cards.remove(card)
         other_hand.add(card)
         
-        
+#Demonstrating inheritence:
+class Deck(Hand):
+    # Deck class now has the same methods of Hand: __init, __str, clear(),
+    # add(), give()
+    ''' A deck of playing cards'''
+    def populate(self):
+        # For every possible value in the CONST list of SUITS, 4 iterations
+        for suit in Card.SUITS:
+            #for every one suit, assosiate it with every rank
+            for rank in Card.RANKS:
+                #adding the cards to the deck, one by one until every rank is in every suit
+                # Card(rank, suit) -> since you iterated through both lists,
+                # you have an index assc. with a rank and suit.
+                # Since Card needs a rank and suit to instantiate, you do so here, with their
+                # iterations.
+                self.add(Card(rank, suit))
+                
+    def shuffle(self):
+        # move the list of cards
+        import random
+        random.shuffle(self.cards)

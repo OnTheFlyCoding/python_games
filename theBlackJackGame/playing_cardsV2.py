@@ -71,8 +71,9 @@ class Deck(Hand):
         
     def deal(self, hands, per_hand = 1):
         for rounds in range(per_hand):
-            # do the following check for every player passed (hands).
+            #The following code executes once per round:
             for hand in hands:
+                #per round, deal a card to each player
                 #as long as the deck is not empty, execute the following:
                 if self.cards:
                     # the first card in the deck
@@ -93,7 +94,17 @@ print(deck1)
 deck1.shuffle()
 print('\nShuffled the deck:')
 print(deck1)
-
-
+my_hand = Hand()
+your_hand = Hand()
+#list of two objects
+hands = [my_hand, your_hand]
+deck1.deal(hands, per_hand=5)
+print('\n\tDealt 5 cards to my hand and your hand.')
+print(f'\nMy hand: {my_hand}')
+print(f'\nYour hand: {your_hand}')
+print(f'\nRemaining cards in the deck: {deck1}')
+deck1.clear()
+print('Cleared the deck.')
+print('Deck:', deck1)
 
 input('Press any key to exit: ')

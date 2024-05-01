@@ -84,7 +84,7 @@ my_hand.add(card5)
 print(my_hand)
 
 your_hand = Hand()
-print('\nInstatiated your hand. we now have two objects from the class Hand')
+print('\nInstatiated your hand. \nWe now have two objects from the class Hand')
 my_hand.give(card1,your_hand)
 my_hand.give(card2,your_hand)
 print('\nGave the first two cars to your hand')

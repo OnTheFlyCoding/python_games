@@ -10,10 +10,10 @@ class Player(object):
         self.health = health
     
     def blast(self,enemy):
-        print('The player blasts an enemy. \n')
+        '''Requires a valid enemy as a parameter'''
+        print(f'{self.name} blasts {enemy.name}. \n')
         enemy.health -= 20
-        print(f'You did 20xp worth of damage! Their health is now at {enemy.health}xp')
-        #enemy.die()
+        print(f'You did 20xp worth of damage! {enemy.name} the alien\'s health is now at {enemy.health}xp')
     
     def die(self):
         print(' The hero has been hit! \n\'This can\'t be the way I go out.. \n pass me my last ciggarette... light me up... \n one last time...\'\n ')
@@ -26,25 +26,25 @@ class Alien(object):
         self.health = health
     
     def blast(self,enemy):
+        '''Requires a valid enemy as a parameter'''
         print('The alien blasts a hero!\n')
         enemy.health -= 20
-        print(f'You did 20xp worth of damage! Their health is now at {enemy.health}xp')
-        #enemy.die()
+        print(f'You did 20xp worth of damage! {enemy.name} health is now at {enemy.health}xp')
+    
     
     def die(self):
-        print('The alien gasps and says\n \'Oh, this is it. This is the big one. \n Yes, its getting dark now. Tell my 1.6 million larvae that I loved them... \n Good bye.. cruel world.\'\n ')
+        print(f'{self.name} the alien gasps and says\n \'Oh, this is it. This is the big one. \n Yes, its getting dark now. Tell my 1.6 million larvae that I loved them... \n Good bye.. cruel world.\'\n ')
 
 
 def main():
     player_name = input('What would you like to name your Hero??: ')
     print('\n')
     hero = Player(player_name)
-    print(f'Starting Health for our hero: {hero.health}\n')
+    print(f'Starting Health for {hero.name}: {hero.health}\n')
     alien_name = input('What would you like to name this Alien?: ')
     print('\n')
     invader = Alien(alien_name)
-    print(f'Starting Health for our hero: {invader.health}\n')
-    #print(' \t\t Death of an Alien\n')
+    print(f'Starting Health for {invader.name} the alien: {invader.health}\n')
     print('\t\tBegin Your Intergalactic Battle..')
     choice = None
     while choice != "0":
@@ -65,6 +65,10 @@ def main():
         
         elif choice == '1':
             hero.blast(invader)
+            if invader.health <= 0:
+                print(' \t\t Death of an Alien\n')
+                invader.die()
+                break
         
         else:
             print(f'\nSorry but, {choice} wasn\'t a valid choice')

@@ -85,9 +85,15 @@ class Deck(Hand):
 deck1 = Deck()
 print('Created a new Deck')
 print(f'Deck: {deck1}')
+#checking populate method
 deck1.populate()
-print('\nPopulated the deck.')
+print('\nPopulated the deck:')
 print(deck1)
+#checking shuffle method
+deck1.shuffle()
+print('\nShuffled the deck:')
+print(deck1)
+
 
 
 input('Press any key to exit: ')

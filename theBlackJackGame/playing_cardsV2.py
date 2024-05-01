@@ -51,6 +51,7 @@ class Hand(object):
 class Deck(Hand):
     # Deck class now has the same methods of Hand: __init, __str, clear(),
     # add(), give()
+    # Bascially acts as the dealer. controlling the distribution of the cards to the players.
     ''' A deck of playing cards'''
     def populate(self):
         # For every possible value in the CONST list of SUITS, 4 iterations
@@ -68,3 +69,15 @@ class Deck(Hand):
         # move the list of cards
         import random
         random.shuffle(self.cards)
+        
+    def deal(self, hands, per_hand = 1):
+        for rounds in range(per_hand):
+            # do the following check for every player passed (hands).
+            for hand in hands:
+                #as long as the deck is not empty, execute the following:
+                if self.cards:
+                    # the first card in the deck
+                    top_card = self.cards[0]
+                    self.give(top_card, hand)
+                else:
+                    print('Can\'t continue deal. Out of cards!')

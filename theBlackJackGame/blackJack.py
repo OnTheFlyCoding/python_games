@@ -85,6 +85,9 @@ class BJ_Hand(cards.Hand):
     def is_busted(self):
         return self.total > 21
     
+    # since cards.Hand is the og base class. it has to inherit from the updated hand object class
+    # that refers to this game specifically.
+    # Which would be the BJ_Hand class in this program.
 class BJ_player(BJ_Hand):
     ''' A Blackjack Player '''
     def is_hitting(self):
@@ -103,4 +106,27 @@ class BJ_player(BJ_Hand):
         
     def push(self):
         print(self.name, 'Pushes👀')
+        
+        #Since the dealer also has to 'play the game' with ea. player, it too must inherit
+        # from the same BJ_Hand class. Other wise it wouldnt be able to hold card
+        # objects.
+class BJ_Dealer(BJ_Hand):
+    ''' A black jack dealer '''
+    # Rules: since the dealer will only hit on anything lower than 17,
+    # Must edit the is_hitting method so that it is more specific for the dealer and not
+    # the other players
+    def is_hitting(self):
+        return self.total < 17
+    
+    def bust(self):
+        print(self.name, 'Dealer busts🎉')
+    
+    def flip_first_card(self):
+        first_card = self.cards[0]
+        first_card.flip()
+        # Since the card objects from BJ_Card gets instantiated in the deck, befroe its given,
+        # the BJ_Dealer and BJ_Player class can both use the .flip method assc. with the Card class
+        # the BJ_Dealer class communicates with the BJ_card class to invoke its method to the hard
+        # the dealer is currently holding
+        
         

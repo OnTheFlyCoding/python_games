@@ -81,7 +81,7 @@ class BJ_Hand(cards.Hand):
             t += 10
         return t
     
-    #Create a method that checks if we busted or not
+    #Create a method that checks if we busted or not. returns false if the player has not bust.
     def is_busted(self):
         return self.total > 21
     
@@ -159,7 +159,14 @@ class BJ_Game(object):
                 sp.append(player)
         return sp
     
-    
+    def __additional_cards(self, player):
+        while not player.is_busted() and player.is_hitting():
+            self.deck.deal([player])
+        
+        print(player)
+        if player.is_busted():
+            player.bust()
+            
                 
         
         

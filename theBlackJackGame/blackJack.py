@@ -88,7 +88,8 @@ class BJ_Hand(cards.Hand):
     # since cards.Hand is the og base class. it has to inherit from the updated hand object class
     # that refers to this game specifically.
     # Which would be the BJ_Hand class in this program.
-class BJ_player(BJ_Hand):
+class BJ_Player(BJ_Hand):
+    # already has self.name assc w/ the BJ_Hand class
     ''' A Blackjack Player '''
     def is_hitting(self):
         response = games.ask_yes_no(f'\n{self.name}, do you want a hit? (Y/N): ')
@@ -128,5 +129,37 @@ class BJ_Dealer(BJ_Hand):
         # the BJ_Dealer and BJ_Player class can both use the .flip method assc. with the Card class
         # the BJ_Dealer class communicates with the BJ_card class to invoke its method to the hard
         # the dealer is currently holding
+        
+        
+# This class is used to create a single object that represents the blackjack game itself.
+
+class BJ_Game(object):
+    ''' A Blackjack Game '''
+    def __init__(self, names):
+        self.players = []
+        for name in names:
+            # INSTANTIATE the players
+            player = BJ_Player(name)
+            self.players.append(player)
+            
+        #INSTANTIATE Dealer
+        self.dealer = BJ_Dealer('Dealer')
+        #INSTANTIATE the Deck
+        self.deck = BJ_Deck()
+        self.deck.populate()
+        self.deck.shuffle()
+    
+    @property
+    def still_playing(self):
+        sp =[]
+        for player in self.players:
+            # If we check the is_busted method for a given Hand (player)
+            # if it returns negative, means they didnt bust and are still playing.
+            if not player.is_busted():
+                sp.append(player)
+        return sp
+    
+    
+                
         
         

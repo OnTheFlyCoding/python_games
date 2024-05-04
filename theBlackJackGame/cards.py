@@ -12,7 +12,7 @@ class Card(object):
         
     def __str__(self):
         if self.is_face_up:
-            rep = self.rank + ";\t" + self.suit
+            rep = self.rank + self.suit
         else:
             rep = 'XX'
         return rep

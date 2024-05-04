@@ -100,10 +100,10 @@ class BJ_Player(BJ_Hand):
         self.lose()
         
     def lose(self):
-        print(self.name, 'Loses :(')
+        print(self.name, 'Loses 😂')
         
     def win(self):
-        print(self.name, 'Wins! :)')
+        print(self.name, 'Wins! 🎉')
         
     def push(self):
         print(self.name, 'Pushes👀')
@@ -120,7 +120,7 @@ class BJ_Dealer(BJ_Hand):
         return self.total < 17
     
     def bust(self):
-        print(self.name, 'Dealer busts🎉')
+        print(self.name, 'Busts🎉')
     
     def flip_first_card(self):
         first_card = self.cards[0]
@@ -163,9 +163,78 @@ class BJ_Game(object):
         while not player.is_busted() and player.is_hitting():
             self.deck.deal([player])
         
-        print(player)
-        if player.is_busted():
-            player.bust()
+            print(player)
+            if player.is_busted():
+                # Since both player and dealer class have their own bust(). they can both have it
+                # invoked by the game object.
+                player.bust()
+    
+    def play(self):
+        # deal initial 2 cards to everyone
+        self.deck.deal(self.players + [self.dealer], per_hand= 2)
+        self.dealer.flip_first_card() # hide dealers first card
+        for player in self.players:
+            print(player)
+        
+        print(self.dealer)
+        
+        # deal additional cards
+        for player in self.players:
+            self.__additional_cards(player)
+        
+        self.dealer.flip_first_card() #reveal the dealers first card.
+        
+        if not self.still_playing:
+            # since all players have busted, reveal the second card of the dealer.
+            print(self.dealer)
+            
+        else:
+            # deal additional cards to dealer.
+            print(self.dealer)
+            # since dealer was defined and instantiated here in this BJ_game class
+            #it must use self.dealer
+            self.__additional_cards(self.dealer)
+            if self.dealer.is_busted():
+                # everyone who is still playing wins since the dealer has busted.
+                for player in self.still_playing:
+                    player.win()
+            else:
+                # compare each player still playing to dealer
+                for player in self.still_playing:
+                    if player.total > self.dealer.total:
+                        player.win()
+                    elif player.total < self.dealer.total:
+                        player.lose()
+                    else: player.push()
+                    #player tied with the dealer
+        # The game or round has finished and now its time to clear the cards they are holding.
+        for player in self.players:
+            player.clear()
+        self.dealer.clear()
+        
+def main():
+    print('\t\tWelcome to Blackjack!')
+    
+    names = []
+    number = games.ask_number('How many players? (1 - 7): ', low=1, high=7)
+    for i in range(number):
+        name = input("Enter player name: ")
+        names.append(name)
+    print()
+    
+    # Play the game
+    game = BJ_Game(names)
+    # once game has finished, ask if they would like to play again!
+    again = None
+    while again != 'n':
+        game.play()
+        again = games.ask_yes_no('Do you want to play again?(y/n): ')
+
+main()
+input('\n\nPress any key to exit: ')
+    
+        
+        
             
                 
         

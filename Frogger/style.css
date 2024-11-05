@@ -1,0 +1,40 @@
+.grid{
+    width: 180px;
+    height: 180px;
+    border: solid 1px black;
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid div{
+    height: 20px;
+    width: 20px;
+}
+
+/* style for finish line */
+.ending-block{
+    background-color: black;
+}
+/* style for starting position */
+.starting-block{
+    background-color: blue;
+}
+/* style for river */
+.l4, .l5{
+    background-color: lightblue;
+}
+/* style for logs */
+.l1, .l2, .l3{
+    background-color: burlywood;
+}
+/* style for road */
+.c1,.c3{
+    background-color: lightgray;
+}
+/* style for car */
+.c2{
+    background-color: red;
+}
+/* style for frog */
+.frog{
+    background-color: green;
+}
